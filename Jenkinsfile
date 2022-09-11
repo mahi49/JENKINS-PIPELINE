@@ -5,23 +5,23 @@ pipeline {
             steps {
                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'mahi49', url: 'https://github.com/mahi49/JENKINS-PIPELINE.git']]])}
         }
+        stage('validate') {
+            steps {
+                sh 'mvn validate'
+            }
+        }
         stage('compile') {
             steps {
                 sh 'mvn compile'
             }
-        }
-        stage ('validate') {
-            steps {
-                sh 'mvn validate'
-            }
 
         }
-        stage ('test') {
+        stage('test') {
             steps {
                 sh 'mvn test'
             }
         }
-         stage ('package') {
+         stage('package') {
             steps {
                 sh 'mvn package'
         

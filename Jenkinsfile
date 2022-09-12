@@ -10,7 +10,7 @@ pipeline {
                 sh 'mvn validate'
             }
         }
-        stage('compile') {
+        stage('compile-code') {
             steps {
                 sh 'mvn compile'
             }
